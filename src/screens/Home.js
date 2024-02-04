@@ -1,10 +1,11 @@
 import { SafeAreaView, StyleSheet, Text, View,TextInput, ActivityIndicator,FlatList,TouchableOpacity } from 'react-native'
 import React from 'react'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-
+import { useIsFocused } from '@react-navigation/native';
 import { SuggestionsData } from '../constants';
 import SuggestionCard from '../Components/SuggestionCard';
 const Home = ({navigation}) => {
+  const isFocused= useIsFocused();
   return (
     <SafeAreaView style={styles.container}>
       {/* header tab  */}
@@ -23,7 +24,7 @@ const Home = ({navigation}) => {
       <View style={styles.suggestionContainer}>
         <View style={styles.suggestionHeading}>
           <Text style={styles.suggestionsText}>Suggestions</Text>
-          <Text style={styles.seeAllText}>See all</Text>
+          <Text style={styles.seeAllText} onPress={()=> navigation.navigate('Services')}>See all</Text>
         </View>
 
         <View style={styles.suggestions}>
@@ -35,7 +36,9 @@ const Home = ({navigation}) => {
               showsHorizontalScrollIndicator={false}
               scrollEnabled={false}
               renderItem={({item})=>(
-                  <SuggestionCard {...item}/>
+                <TouchableOpacity onPress={()=> navigation.navigate(item.navigatePath)}>
+                  <SuggestionCard {...item} isFocused={isFocused}/>
+                </TouchableOpacity>
               )}
             />
             ):(
@@ -44,7 +47,6 @@ const Home = ({navigation}) => {
         </View>
 
       </View>
-
 
     </SafeAreaView>
   )
@@ -76,6 +78,7 @@ const styles = StyleSheet.create({
   suggestionContainer:{
     width:wp('95%'),
     marginTop:50,
+    marginLeft:0
   },
   suggestionHeading:{
     width:wp('90%'),

@@ -1,25 +1,41 @@
 import { StyleSheet, Text, View,Image } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import Animated,{useSharedValue,withSpring,useAnimatedStyle,withTiming} from 'react-native-reanimated';
 
-const SuggestionCard = ({isPromo,imageSrc,footerText}) => {
+const SuggestionCard = ({isPromo,imageSrc,footerText,isFocused}) => {
+
+    const scaleProp = useSharedValue(0.5);
+
+    const imageStyles = useAnimatedStyle(()=>{
+        return{
+            transform:[{scale:scaleProp.value}]
+        }
+    },[])
+
+    useEffect(()=>{
+
+        scaleProp.value = withTiming(1,{
+            duration:1000
+        });
+    },[])
+
   return (
-    <View style={styles.container}>
+    <Animated.View style={[styles.container]}>
         {isPromo && (
             <View style={styles.promotxtContainer}>
         <Text style={styles.promoTxt}>Promo</Text>
         </View>
         )}
 
-        <View style={styles.imageContainer}>
-            <Image
-                style={styles.SuggestionCardImg}
+        <Animated.View style={[styles.imageContainer]}>
+            <Animated.Image
+                style={[styles.SuggestionCardImg,imageStyles]}
                 source={imageSrc}
             />
-        </View>
+        </Animated.View>
         <Text style={styles.footerText}>{footerText}</Text>
-
-    </View>
+    </Animated.View>
   )
 }
 
@@ -27,7 +43,6 @@ export default SuggestionCard
 
 const styles = StyleSheet.create({
     container:{
-        flex:1,
         width:wp('25%'),
         height:hp('15%'),
         justifyContent:'flex-end',

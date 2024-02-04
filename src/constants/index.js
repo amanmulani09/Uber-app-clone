@@ -4,24 +4,28 @@ export const SuggestionsData = [
         id:'1',
         isPromo:true,
         imageSrc:require('../assets/car.png'),
-        footerText:'Trip'
+        footerText:'Trip',
+        navigatePath:'Services' 
     },
     {
         id:'2',
         isPromo:false,
         imageSrc:require('../assets/intercity.png'),
-        footerText:'Intercity'
+        footerText:'Intercity',
+        navigatePath:'Home'
     },
     {
         id:'3',
         isPromo:true,
         imageSrc:require('../assets/Rentals.png'),
-        footerText:'Rentals'
+        footerText:'Rentals',
+        navigatePath:'Activity'
     },
     {
         id:'4',
         isPromo:false,
         imageSrc:require('../assets/Package.png'),
-        footerText:'Package'
+        footerText:'Package',
+        navigatePath:'Account'
     }
 ]
