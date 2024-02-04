@@ -5,7 +5,6 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-
 //import screens;
 import Home from '../screens/Home';
 import Services from '../screens/Services';
@@ -19,7 +18,7 @@ export default function Navigation(){
     return(
         <NavigationContainer>
             <Tab.Navigator initialRouteName='Home' screenOptions={{
-                tabBarActiveTintColor:'green'
+                tabBarActiveTintColor:'black'
             }}>
                 
                 <Tab.Screen name='Home' component={Home}
