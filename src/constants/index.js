@@ -28,4 +28,41 @@ export const SuggestionsData = [
         footerText:'Package',
         navigatePath:'Account'
     }
+];
+
+export const homeSliderData = [
+
+    {
+        id:"1",
+        title:"You have multiple promos",
+        ctaText:"Terms Apply",
+        sideImgSrc:require('../assets/promo.jpeg'),
+        navigationPath:"Promos",
+        cardThemes:{
+            bg:'#006a50',
+            color:'white'
+        }
+    },
+    {
+        id:"2",
+        title:"Uber Moto-go your way",
+        ctaText:"Try now",
+        sideImgSrc:require('../assets/ubermoto.jpeg'),
+        navigationPath:"Location",
+        cardThemes:{
+            bg:'yellow',
+            color:'black'
+        }
+    },
+    {
+        id:"3",
+        title:"Ready? Then let's roll.",
+        ctaText:"Ride with Uber",
+        sideImgSrc:require('../assets/ridewithuber.jpeg'),
+        navigatePath:"Location",
+        cardThemes:{
+            bg:'red',
+            color:'white'
+        }
+    }
 ]

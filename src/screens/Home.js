@@ -4,6 +4,8 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import { useIsFocused } from '@react-navigation/native';
 import { SuggestionsData } from '../constants';
 import SuggestionCard from '../Components/SuggestionCard';
+import { homeSliderData } from '../constants';
+import SliderCard from '../Components/SliderCard';
 const Home = ({navigation}) => {
   const isFocused= useIsFocused();
   return (
@@ -47,6 +49,20 @@ const Home = ({navigation}) => {
         </View>
 
       </View>
+
+      {/* Home main slider  */}
+    <View style={styles.sliderContainer}>
+      <FlatList
+      data={homeSliderData}
+      keyExtractor={(item)=> item.id}
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      renderItem={({item})=>(
+        <SliderCard {...item} />
+      )}
+    />
+    </View>
+     
 
     </SafeAreaView>
   )
