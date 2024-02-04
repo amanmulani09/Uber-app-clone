@@ -7,8 +7,11 @@ const SliderCard = ({title,ctaText,sideImgSrc,cardThemes}) => {
     <View style={[styles.cardContainer,{backgroundColor:cardThemes.bg}]}>
         <View style={styles.cardTypographyContainer}>
                 <Text style={[styles.title,{color:cardThemes.color}]}>{title}</Text>
-                <Text style={[styles.ctxText,{color:cardThemes.color}]}>{ctaText}
-                <MaterialCommunityIcons name='arrow-right-thin' size={'small'} style={{color:'white',marginLeft:10,fontSize:20,position:'absolute'}}/>
+                <View>
+                    
+                </View>
+                <Text style={[styles.ctxText,{color:cardThemes.color}]}>
+                    {ctaText} <Text style={{fontSize:16,justifyContent:'center'}}>→</Text>
                 </Text>
         </View>
         <View>
@@ -42,7 +45,8 @@ const styles = StyleSheet.create({
     },
     ctxText:{
         marginTop:20,
-        marginLeft:15
+        marginLeft:15,
+        textAlignVertical:'center'
     },
     slideImg:{
         flex:1,
