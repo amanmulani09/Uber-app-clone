@@ -1,59 +1,113 @@
-import { StyleSheet, Text, View,StatusBar ,TouchableOpacity} from 'react-native'
+import { StyleSheet, Text, View,StatusBar ,TouchableOpacity,SafeAreaView,FlatList} from 'react-native'
 import React, { useEffect, useState } from 'react'
-import Animated,{withTiming,withDelay,useSharedValue, useAnimatedStyle} from 'react-native-reanimated'
+import { servicesData,servicesHeroData } from '../constants'
+import SuggestionCard from '../Components/SuggestionCard'
+HeroSuggestionCard
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import HeroSuggestionCard from '../Components/HeroSuggestionCard'
 
-const DELAY = 500;
-const DURATION = 1000;
 const Services = () => {
-  const [visible,setVisible] = useState(false)
-  const opacityVal = useSharedValue(0);
-  const opacityVal1 = useSharedValue(0)
-  const opacityVal2 = useSharedValue(0)
-  const opacityVal3 = useSharedValue(0)
-
-  const handleOpacity = ()=>{
-    if(visible){
-
-      opacityVal.value = withDelay(3 * DELAY,withTiming(0,{duration:DURATION}) )
-      opacityVal1.value = withDelay(2 * DELAY,withTiming(0,{duration:DURATION}) )
-      opacityVal2.value = withDelay(1 * DELAY,withTiming(0,{duration:DURATION}) )
-      opacityVal3.value = withDelay(0 * DELAY,withTiming(0,{duration:DURATION}) )
-    }else{
-
-      opacityVal.value = withDelay(0 * DELAY,withTiming(1,{duration:DURATION}) )
-      opacityVal1.value = withDelay(1 * DELAY,withTiming(1,{duration:DURATION}) )
-      opacityVal2.value = withDelay(2 * DELAY,withTiming(1,{duration:DURATION}) )
-      opacityVal3.value = withDelay(3 * DELAY,withTiming(1,{duration:DURATION}) )
-  
-    }
-   
-    setVisible(!visible)
-  }
-
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#030303" />
-      <View style={{flexDirection:'row',gap:10}}>
+    <SafeAreaView style={styles.container}>
+    {/* header tab  */}
+    <Text style={styles.header}>
+      Services
+    </Text>
 
-      <Animated.Text style={{opacity:opacityVal,fontSize:20,fontWeight:'600'}}>This</Animated.Text>
-      <Animated.Text style={{opacity:opacityVal1,fontSize:20,fontWeight:'600'}}>Is</Animated.Text>
-      <Animated.Text style={{opacity:opacityVal2,fontSize:20,fontWeight:'600'}}>Services</Animated.Text>
-      <Animated.Text style={{opacity:opacityVal3,fontSize:20,fontWeight:'600'}}>Page</Animated.Text>
+    <Text style={styles.headerSecondary}>Go anywhere, get anything</Text>
+
+    {/* Hero suggestions  */}
+
+    <View style={styles.suggestions}>
+          {servicesHeroData.length > 0 ? (
+          <FlatList
+            data={servicesHeroData}
+            keyExtractor={(data)=> data.id}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            scrollEnabled={false}
+            renderItem={({item})=>(
+              <TouchableOpacity onPress={()=> navigation.navigate(item.navigatePath)}>
+                <HeroSuggestionCard {...item}/>
+              </TouchableOpacity>
+            )}
+          />
+          ):(
+            <ActivityIndicator size="small" />
+          )}
       </View>
-      <TouchableOpacity onPress={handleOpacity} >
-          <Text style={{marginTop:50,borderWidth:1,padding:5,borderRadius:5}}> {visible  ? 'hide' : 'show'} </Text>
-      </TouchableOpacity>
+
+    {/* suggestions tab */}
+    <View style={styles.suggestionContainer}>
+      <View style={styles.suggestions}>
+          {servicesData.length > 0 ? (
+          <FlatList
+            data={servicesData}
+            keyExtractor={(data)=> data.id}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            scrollEnabled={false}
+            renderItem={({item})=>(
+              <TouchableOpacity onPress={()=> navigation.navigate(item.navigatePath)}>
+                <SuggestionCard {...item}/>
+              </TouchableOpacity>
+            )}
+          />
+          ):(
+            <ActivityIndicator size="small" />
+          )}
+      </View>
     </View>
+
+    </SafeAreaView>
   )
 }
 
 export default Services
 
 const styles = StyleSheet.create({
-    container:{
-      flex:1,
-      justifyContent:'center',
-      alignItems:'center',
-      backgroundColor:'#fff'
-    }
+  container:{
+    flex:1,
+    backgroundColor:'#fff'
+  },
+  header:{
+    fontSize:35,
+    marginHorizontal:20,
+    fontWeight:'600',
+    marginBottom:20,
+    letterSpacing:1.01
+  },
+  headerSecondary:{
+    marginHorizontal:20,
+    fontSize:20,
+    fontWeight:'700',
+    letterSpacing:1.1
+  },
+  textInput:{
+    width:wp('90%'),
+    backgroundColor:'#e3e8e8',
+    height:hp('7%'),
+    borderRadius:50,
+    marginLeft:wp('5%'),
+    fontSize:20,
+    paddingLeft:20,
+    fontWeight:'600'
+  },
+  suggestionContainer:{
+    width:wp('95%'),
+    marginTop:0,
+    marginLeft:0
+  },
+  suggestionHeading:{
+    width:wp('90%'),
+    justifyContent:"space-between",
+    alignItems:'center',
+    flexDirection:'row',
+    marginLeft:20
+  },
+  suggestions:{
+    width:wp('98%'),
+    marginTop:0,
+    justifyContent:'flex-end'
+  }
   })

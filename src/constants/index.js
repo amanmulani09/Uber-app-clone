@@ -29,7 +29,6 @@ export const SuggestionsData = [
         navigatePath:'Account'
     }
 ];
-
 export const homeSliderData = [
 
     {
@@ -66,3 +65,54 @@ export const homeSliderData = [
         }
     }
 ]
+
+export const servicesData = [
+
+    {
+        id:'1',
+        isPromo:true,
+        imageSrc:require('../assets/Rentals.png'),
+        footerText:'Rentals',
+        navigatePath:'Activity'
+    },
+    {
+        id:'2',
+        isPromo:false,
+        imageSrc:require('../assets/Package.png'),
+        footerText:'Package',
+        navigatePath:'Account'
+    },
+    {
+        id:'3',
+        isPromo:false,
+        imageSrc:require('../assets/group.png'),
+        footerText:'Group ride',
+        navigatePath:'Account'
+    },
+    {
+        id:'4',
+        isPromo:false,
+        imageSrc:require('../assets/booking.png'),
+        footerText:'Reserve',
+        navigatePath:'Account'
+    }
+];
+export const servicesHeroData = [
+
+    {
+        id:'1',
+        isPromo:true,
+        imageSrc:require('../assets/car.png'),
+        footerText:'Trip',
+        navigatePath:'Services' 
+    },
+    {
+        id:'2',
+        isPromo:false,
+        imageSrc:require('../assets/intercity.png'),
+        footerText:'Intercity',
+        navigatePath:'Home'
+    },
+];
+
+

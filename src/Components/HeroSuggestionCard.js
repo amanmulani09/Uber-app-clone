@@ -1,25 +1,8 @@
-import { StyleSheet, Text, View,Image } from 'react-native'
-import React, { useEffect } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import Animated from 'react-native-reanimated'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import Animated,{useSharedValue,withSpring,useAnimatedStyle,withTiming} from 'react-native-reanimated';
-
-const SuggestionCard = ({isPromo,imageSrc,footerText}) => {
-
-    const scaleProp = useSharedValue(0.5);
-
-    const imageStyles = useAnimatedStyle(()=>{
-        return{
-            transform:[{scale:scaleProp.value}]
-        }
-    },[])
-
-    useEffect(()=>{
-
-        scaleProp.value = withTiming(1,{
-            duration:1000
-        });
-    },[])
-
+const HeroSuggestionCard = ({isPromo,imageSrc,footerText}) => {
   return (
     <Animated.View style={[styles.container]}>
         {isPromo && (
@@ -30,40 +13,44 @@ const SuggestionCard = ({isPromo,imageSrc,footerText}) => {
 
         <Animated.View style={[styles.imageContainer]}>
             <Animated.Image
-                style={[styles.SuggestionCardImg,imageStyles]}
+                style={[styles.SuggestionCardImg]}
                 source={imageSrc}
             />
-        </Animated.View>
         <Text style={styles.footerText}>{footerText}</Text>
+        </Animated.View>
     </Animated.View>
   )
 }
 
-export default SuggestionCard
+export default HeroSuggestionCard
 
 const styles = StyleSheet.create({
     container:{
-        width:wp('25%'),
+        width:wp('50%'),
         height:hp('15%'),
         justifyContent:'flex-end',
         alignItems:'center',
         position:'relative'
     },
     imageContainer:{
-        width:70,
-        height:70,
+        width:wp('45%'),
+        height:hp(12),
         borderRadius:15,
         backgroundColor:'#e3e8e8',
         justifyContent:'center',
         alignItems:'center'
     },
     SuggestionCardImg:{
-        width:50,
-        height:50
+        width:55,
+        height:50,
+        alignSelf:'flex-end',
+        marginRight:15,
+        marginTop:5
     },
     promotxtContainer:{
     backgroundColor:'green',
     borderRadius:50,
+    width:60,
     padding:5,
     justifyContent:'center',
     alignItems:'center',
@@ -77,8 +64,12 @@ const styles = StyleSheet.create({
         textAlign:'center'
     },
     footerText:{
-        fontSize:11,
+        fontSize:16,
+        textAlign:'left',
         marginTop:10,
-        fontWeight:'600'
+        fontWeight:'600',
+        alignSelf:'flex-start',
+        marginLeft:15,
+        letterSpacing:1.1
     }
 })
