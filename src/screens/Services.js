@@ -2,7 +2,6 @@ import { StyleSheet, Text, View,StatusBar ,TouchableOpacity,SafeAreaView,FlatLis
 import React, { useEffect, useState } from 'react'
 import { servicesData,servicesHeroData } from '../constants'
 import SuggestionCard from '../Components/SuggestionCard'
-HeroSuggestionCard
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import HeroSuggestionCard from '../Components/HeroSuggestionCard'
 
