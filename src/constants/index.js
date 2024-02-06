@@ -66,6 +66,7 @@ export const homeSliderData = [
     }
 ]
 
+// service section data 
 export const servicesData = [
 
     {
@@ -116,3 +117,34 @@ export const servicesHeroData = [
 ];
 
 
+// activity section data 
+
+export const recentActivityCard = {
+    id:'1',
+    imageSrc:require(''),
+    tripDate:'20 Jan',
+    tripTime:'2:25 pm',
+    tripFees:124.00,
+    ctaActions:[
+        {
+            icon:require(''),
+            ctaText:'Rate',
+            navigatePath:'rate'
+        },
+        {
+            icon:require(''),
+            ctaText:'Rebook',
+            navigatePath:'Rebook'
+        }
+    ]
+};
+
+export const tripesData = [
+    {
+        id:'1',
+        tripVehicleType:'auto',
+        tripDestination:'Velotio Technologies Pvt Ltd.',
+        tripTime: '20 Jan . 10:33 am',
+        isCancelled:true
+    }
+]

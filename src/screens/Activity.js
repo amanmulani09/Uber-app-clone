@@ -25,6 +25,19 @@ const Activity = () => {
         </View>
     </View>
 
+    {/* recent trip card  */}
+
+    <View style={styles.recentActivityCard}>
+      <Text style={{fontSize:18,fontWeight:'700',marginLeft:10}}>Past</Text>
+      <View style={{backgroundColor:'#F2F3F4',width:40,height:40,borderRadius:100,justifyContent:'center',alignItems:'center'}}>
+          <Image
+            style={{width:22,height:22}}
+            source={require('../assets/settings.png')}
+          />
+      </View>
+    </View>
+
+
     </SafeAreaView>
   )
 }
@@ -81,5 +94,13 @@ marginLeft:30
 img:{
   width:50,
   height:50
+},
+
+recentActivityCard:{
+  marginTop:20,
+  width:wp('95%'),
+  flexDirection:'row',
+  justifyContent:'space-between',
+  padding:10
 }
   })
